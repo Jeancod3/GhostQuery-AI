@@ -13,6 +13,8 @@ Puedes utilizar la aplicación directamente desde tu navegador sin instalar nada
 
 👉 **[Acceder a GhostQuery AI en la Nube](https://ghostquery-a-peru6767.streamlit.app/)**
 
+> **Nota importante:** Si experimentas problemas de visualización, te recomendamos utilizar **Google Chrome**. Algunos niveles de seguridad configurados en Microsoft Edge pueden bloquear incorrectamente los estilos visuales de la aplicación.
+
 ---
 
 ## 🛠️ Tecnologías
