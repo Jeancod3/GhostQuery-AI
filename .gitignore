@@ -1,0 +1,11 @@
+# Archivos de entorno y configuración sensible
+.env
+
+# Carpetas temporales y de sistema
+__pycache__/
+.venv/
+env/
+.DS_Store
+
+# Archivos de Streamlit
+.streamlit/
