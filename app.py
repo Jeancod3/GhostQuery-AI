@@ -20,7 +20,6 @@ st.set_page_config(
 load_dotenv()
 api_key = os.getenv("GOOGLE_API_KEY")
 
-
 # =========================
 # SESSION STATE
 # =========================
@@ -41,7 +40,6 @@ if "tarea_input" not in st.session_state:
 
 if "ultima_categoria" not in st.session_state:
     st.session_state.ultima_categoria = ""
-
 
 # =========================
 # FUNCIONES AUXILIARES
@@ -202,13 +200,22 @@ st.markdown("""
         transition: all 0.3s ease-in-out !important;
     }
 
+    div.stButton {
+        display: inline-block !important;
+    }
+
     div.stButton > button {
         background-color: #2b2d31 !important;
         color: #E8EAED !important;
-        border-radius: 24px !important;
+        border-radius: 22px !important;
         border: 1px solid #444746 !important;
-        padding: 8px 24px !important;
+        padding: 8px 18px !important;
+        min-height: 42px !important;
+        width: auto !important;
+        min-width: fit-content !important;
+        white-space: nowrap !important;
         transition: all 0.3s ease !important;
+        font-size: 0.98rem !important;
     }
 
     div.stButton > button:hover {
@@ -269,15 +276,12 @@ st.markdown("""
         visibility: hidden;
     }
 
-    /* IMPORTANTE:
-       No ocultar el header, porque ahí aparece el botón para abrir/cerrar el sidebar */
     header {
         visibility: visible !important;
         background: transparent !important;
     }
     </style>
 """, unsafe_allow_html=True)
-
 
 # =========================
 # CATEGORÍAS AGRUPADAS
@@ -321,7 +325,6 @@ categorias_por_grupo = {
     ]
 }
 
-
 categorias_codigo = [
     "💻 Desarrollo Web Frontend",
     "⚙️ Desarrollo Backend y APIs",
@@ -330,7 +333,6 @@ categorias_codigo = [
     "🛠️ DevOps y Servidores",
     "🛒 Creación de E-commerce"
 ]
-
 
 # =========================
 # PROMPTS PERSONALIZADOS
@@ -442,7 +444,6 @@ prompts_categoria = {
     )
 }
 
-
 # =========================
 # SIDEBAR
 # =========================
@@ -491,7 +492,6 @@ with st.sidebar:
         </div>
     """, unsafe_allow_html=True)
 
-
 # =========================
 # ACTUALIZAR TEXTO POR CATEGORÍA
 # =========================
@@ -514,11 +514,10 @@ if st.session_state.ultima_categoria != opcion_rapida:
     st.session_state.tarea_input = texto_por_defecto
     st.session_state.ultima_categoria = opcion_rapida
 
-
 # =========================
 # INTERFAZ PRINCIPAL
 # =========================
-espacio_izq, col_centro, espacio_der = st.columns([1, 2.5, 1])
+espacio_izq, col_centro, espacio_der = st.columns([1, 2.6, 1])
 
 with col_centro:
     st.markdown(
@@ -539,13 +538,13 @@ with col_centro:
         placeholder="Escribe la tarea o trabajo que necesitas realizar, y te generaré la IA recomendada, las habilidades necesarias y un prompt exacto listo para copiar y pegar."
     )
 
-    col_generar, col_limpiar, col_espacio = st.columns([0.45, 0.38, 0.17])
+    espacio_btn_izq, col_generar, col_limpiar, espacio_btn_der = st.columns([1.0, 1.15, 0.9, 1.2])
 
     with col_generar:
-        ejecutar = st.button("🚀 Generar Estrategia de IA", use_container_width=True)
+        ejecutar = st.button("🚀 Generar recomendación")
 
     with col_limpiar:
-        if st.button("🧹 Eliminar chat actual", use_container_width=True):
+        if st.button("🧹 Limpiar chat"):
             eliminar_chat_actual()
             st.toast("Chat actual eliminado.", icon="🧹")
             st.rerun()
@@ -744,12 +743,12 @@ Explica en una frase qué IA usar primero y cuáles usar como complemento.
                     st.session_state.categoria_actual = opcion_rapida
                     st.session_state.modo_actual = modo_respuesta
 
-                    st.toast("¡Estrategia generada con éxito!", icon="✨")
+                    st.toast("¡Recomendación generada con éxito!", icon="✨")
                     st.rerun()
 
                 except Exception as e:
                     st.toast(
-                        "Ocurrió un problema al generar la estrategia. Revisa tu API Key o conexión.",
+                        "Ocurrió un problema al generar la recomendación. Revisa tu API Key o conexión.",
                         icon="❌"
                     )
                     st.error(f"Detalle del error: {e}")
