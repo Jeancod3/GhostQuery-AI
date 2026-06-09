@@ -25,11 +25,11 @@ Puedes utilizar la aplicación directamente desde tu navegador sin instalar nada
 
 ### Vista principal
 
-![Vista principal de GhostQuery AI](screenshots/home.jpg)
+![Vista principal de GhostQuery AI](screenshots/home.jpeg)
 
 ### Resultado generado
 
-![Resultado generado por GhostQuery AI](screenshots/result.jpg)
+![Resultado generado por GhostQuery AI](screenshots/result.jpeg)
 
 ---
 
