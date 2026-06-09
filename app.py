@@ -192,10 +192,6 @@ st.markdown("""
         padding-top: 10vh;
     }
     
-    [data-testid="collapsedControl"] {
-        display: none !important;
-    }
-    
     div[role="radiogroup"] label:has(input:checked) {
         background-color: rgba(255, 75, 75, 0.15) !important;
         border-bottom: 2px solid #FF4B4B !important;
