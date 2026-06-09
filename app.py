@@ -215,7 +215,7 @@ st.markdown("""
         min-width: fit-content !important;
         white-space: nowrap !important;
         transition: all 0.3s ease !important;
-        font-size: 0.98rem !important;
+        font-size: 0.96rem !important;
     }
 
     div.stButton > button:hover {
@@ -266,6 +266,28 @@ st.markdown("""
 
     .modo-item b {
         color: #FFFFFF;
+    }
+
+    .feature-card {
+        background: rgba(255,255,255,0.035);
+        border: 1px solid #333842;
+        border-radius: 14px;
+        padding: 16px;
+        min-height: 95px;
+        box-shadow: 0px 4px 16px rgba(0,0,0,0.18);
+    }
+
+    .feature-card-title {
+        font-weight: 700;
+        color: #FFFFFF;
+        margin-bottom: 6px;
+        font-size: 0.98rem;
+    }
+
+    .feature-card-text {
+        color: #BFC4CC;
+        font-size: 0.88rem;
+        line-height: 1.35;
     }
 
     #MainMenu {
@@ -538,7 +560,8 @@ with col_centro:
         placeholder="Escribe la tarea o trabajo que necesitas realizar, y te generaré la IA recomendada, las habilidades necesarias y un prompt exacto listo para copiar y pegar."
     )
 
-    espacio_btn_izq, col_generar, col_limpiar, espacio_btn_der = st.columns([1.0, 1.15, 0.9, 1.2])
+    # Botones más pequeños y alineados un poco más hacia la izquierda
+    col_generar, col_limpiar, col_espacio = st.columns([0.26, 0.22, 0.52])
 
     with col_generar:
         ejecutar = st.button("🚀 Generar recomendación")
@@ -548,6 +571,36 @@ with col_centro:
             eliminar_chat_actual()
             st.toast("Chat actual eliminado.", icon="🧹")
             st.rerun()
+
+    # Tarjetas de presentación cuando aún no hay respuesta
+    if not st.session_state.respuesta_actual:
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        card1, card2, card3 = st.columns(3)
+
+        with card1:
+            st.markdown("""
+                <div class="feature-card">
+                    <div class="feature-card-title">🤖 IA ideal</div>
+                    <div class="feature-card-text">Recomienda la herramienta más adecuada según tu tarea o categoría.</div>
+                </div>
+            """, unsafe_allow_html=True)
+
+        with card2:
+            st.markdown("""
+                <div class="feature-card">
+                    <div class="feature-card-title">🧠 Skills clave</div>
+                    <div class="feature-card-text">Genera conocimientos necesarios para empezar con mejor enfoque.</div>
+                </div>
+            """, unsafe_allow_html=True)
+
+        with card3:
+            st.markdown("""
+                <div class="feature-card">
+                    <div class="feature-card-title">✍️ Prompt listo</div>
+                    <div class="feature-card-text">Crea un prompt profesional listo para copiar y usar en la IA recomendada.</div>
+                </div>
+            """, unsafe_allow_html=True)
 
     if ejecutar:
         tarea_usuario = st.session_state.tarea_input
