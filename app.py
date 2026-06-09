@@ -261,9 +261,20 @@ st.markdown("""
         color: #FFFFFF;
     }
 
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
+    #MainMenu {
+        visibility: hidden;
+    }
+
+    footer {
+        visibility: hidden;
+    }
+
+    /* IMPORTANTE:
+       No ocultar el header, porque ahí aparece el botón para abrir/cerrar el sidebar */
+    header {
+        visibility: visible !important;
+        background: transparent !important;
+    }
     </style>
 """, unsafe_allow_html=True)
 
